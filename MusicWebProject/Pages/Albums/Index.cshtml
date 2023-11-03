@@ -20,18 +20,19 @@ bootstrap
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Year</th>
+                <th class="table-primary">ID</th>
+                <th class="table-primary">Name</th>
+                <th class="table-primary">Year</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var album in Model.Albums)
             {
+            
                 <tr>
-                    <td>@album.Id</td>
-                    <td>@album.Name</td>
-                    <td>@album.SongYear</td>
+                    <td class="table-light">@album.Id</td>
+                    <td class="table-light">@album.Name</td>
+                    <td class="table-light">@album.SongYear</td>
                 </tr>
             }
         </tbody>

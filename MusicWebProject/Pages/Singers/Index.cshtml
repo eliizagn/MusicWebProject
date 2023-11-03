@@ -9,27 +9,29 @@
 th tr -почитать
 bootstrap
 -->
-<a class="btn" asp-page="/Singers/CreateSinger"> New Singer </a>
-<form method="get"> 
-    <input type="text" asp-for="SearchingString"/>
-    <button type="submit" class="btn">
+<div>
+<a type="button" class="btn btn-outline-primary" " asp-page="/Singers/CreateSinger"> New Singer </a>
+<form method="get">
+        <input type="text" class="btn-outline-primary" asp-for="SearchingString" />
+    <button type="submit" class="btn btn-outline-primary">
         Search
     </button>
 </form>
+</div>
 <div>
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <th class="table-primary">ID</th>
+                <th class="table-primary">Name</th->
             </tr>
         </thead>
         <tbody>
             @foreach (var singer in Model.Singers)
             {
                 <tr>
-                    <td>@singer.Id</td>
-                    <td>@singer.Name</td>
+                    <td class="table-light">@singer.Id</td>
+                    <td class="table-light">@singer.Name</td>
                 </tr>
             }
         </tbody>

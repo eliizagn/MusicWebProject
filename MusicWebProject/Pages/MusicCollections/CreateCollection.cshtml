@@ -1,1 +1,12 @@
-﻿
+﻿@page
+@model CreateCollection
+
+<div>
+    <form method="Post">
+        <input asp-for="Collection.Id" />
+        <input asp-for="Collection.Name" />
+        <input asp-for="Collection.Genre" />
+        <input asp-for="Collection.Genre" />
+        <input class="btn" type="submit" value="Add" />
+    </form>
+</div>

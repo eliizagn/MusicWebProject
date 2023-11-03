@@ -1,9 +1,9 @@
 ﻿@page
 
-@model MusicWebProject.Pages.MusicCollections.IndexModel
+@model MusicWebProject.Pages.Genres.IndexModel
 
 
-<a class="btn" asp-page="/MusicCollections/CreateCollection"> Create New Collection </a>
+<a class="btn" asp-page="/Genres/CreateGenre"> New Genre </a>
 <form method="get"> 
     <input type="text" asp-for="SearchingString"/>
     <button type="submit" class="btn">
@@ -16,16 +16,15 @@
             <tr>
                 <th class="table-primary">ID</th>
                 <th class="table-primary">Name</th>
-                <th class="table-primary">Genre</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var collection in Model.Collections)
+            @foreach (var genre in Model.Genres)
             {
                 <tr>
-                    <td class="table-light">@collection.Id</td>
-                    <td class="table-light">@collection.Name</td>
-                    <td class="table-light">@collection.Genre</td>
+                    <td class="table-light">@genre.Id</td>
+                    <td class="table-light">@genre.Name</td>
+                    <td class="table-light">@genre.Albums</td>
                 </tr>
             }
         </tbody>
