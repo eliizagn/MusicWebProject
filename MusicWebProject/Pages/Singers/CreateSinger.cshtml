@@ -1,10 +1,17 @@
 ﻿@page
 @model CreateSinger
 
-<div>
+
+<div class="d-grid">
     <form method ="Post">
-        <input asp-for="Singer.Id"/>
-        <input asp-for="Singer.Name" />
+        <div class="mb-4">
+            <label asp-for="Singer.Id" class="form-label">Id</label>
+            <input asp-for="Singer.Id" type="text" class="form-control" placeholder="1" />
+        </div>
+        <div class="mb-4">
+            <label asp-for="Singer.Name" class="form-label">Name</label>
+            <input asp-for="Singer.Name" type="text" class="form-control" placeholder="SZA" />
+        </div>
         <input class="btn" type="submit" value="Add"/>
     </form>
 </div>

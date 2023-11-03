@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using MusicWebProject.Data;
 using MusicWebProject.Data.Models;
 
@@ -29,7 +30,9 @@ namespace MusicWebProject.Pages.MusicCollections
                 Collections = _musicDbContext.MusicCollections.Where(x => x.Name.Contains(SearchingString)).ToList();
             }
             else {
-                Collections = _musicDbContext.MusicCollections.ToList();
+                Collections = _musicDbContext.MusicCollections.Where(x => x.Name.Contains(SearchingString))
+                     .Include(x => x.Genre)
+                     .ToList();
             }
         }
     }
