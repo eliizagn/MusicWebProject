@@ -1,0 +1,32 @@
+﻿@page
+
+@model MusicWebProject.Pages.MusicCollections.IndexModel
+
+
+<a class="btn" asp-page="/MusicCollections/CreateCollection"> Create New Collection </a>
+<form method="get"> 
+    <input type="text" asp-for="SearchingString"/>
+    <button type="submit" class="btn">
+        Search
+    </button>
+</form>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var collection in Model.Collections)
+            {
+                <tr>
+                    <td>@collection.Id</td>
+                    <td>@collection.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

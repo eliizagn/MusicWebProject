@@ -1,0 +1,27 @@
+﻿@page
+@model MusicWebProject.Pages.Songs.IndexModel
+
+<a class="btn" asp-page="/Songs/CreateSong"> Add Song </a>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Singer</th>
+                <th>Album</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var song in Model.Songs)
+            {
+                <tr>
+                    <td>@song.Id</td>
+                    <td>@song.Name</td>
+                    <td>@song.Singer</td>
+                    <td>@song.Album</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,40 @@
+﻿@page
+<!--//обращение к Index.cshtml.cs
+-->
+@model MusicWebProject.Pages.Albums.IndexModel
+
+<!--
+    <></> - теги
+//thead - наименования столбцов (условно), tbody - сами строки
+th tr -почитать
+bootstrap
+-->
+<a class="btn" asp-page="/Albums/CreateAlbum"> Add Singer Album </a>
+<form method="get"> 
+    <input type="text" asp-for="SearchingString"/>
+    <button type="submit" class="btn">
+        Search
+    </button>
+</form>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var album in Model.Albums)
+            {
+                <tr>
+                    <td>@album.Id</td>
+                    <td>@album.Name</td>
+                    <td>@album.SongYear</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

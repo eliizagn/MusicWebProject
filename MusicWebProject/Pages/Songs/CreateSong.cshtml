@@ -1,0 +1,15 @@
+﻿@page
+@model CreateSongs
+
+<div>
+    <form method="Post">
+        <input asp-for="Song.Id" />
+        <input asp-for="Song.Name" />
+        <input asp-for="Song.Singer" />
+        <input asp-for="Song.Album" />
+        <input asp-for="Song.AlbumId" />
+        <input asp-for="Song.SingerId" />
+        <input class="btn" type="submit" value="Add" />
+    </form>
+   
+</div>
