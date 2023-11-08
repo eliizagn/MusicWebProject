@@ -140,7 +140,7 @@ namespace MusicWebProject.Migrations
 
                     b.HasIndex("SingerId");
 
-                    b.ToTable("Songs");
+                    b.ToTable("Albums");
                 });
 
             modelBuilder.Entity("MusicWebProject.Data.Models.Album", b =>
@@ -178,7 +178,7 @@ namespace MusicWebProject.Migrations
                         .IsRequired();
 
                     b.HasOne("MusicWebProject.Data.Models.MusicCollection", null)
-                        .WithMany("Songs")
+                        .WithMany("Albums")
                         .HasForeignKey("MusicCollectionId");
 
                     b.HasOne("MusicWebProject.Data.Models.Singer", "Singer")
@@ -201,7 +201,7 @@ namespace MusicWebProject.Migrations
 
             modelBuilder.Entity("MusicWebProject.Data.Models.MusicCollection", b =>
                 {
-                    b.Navigation("Songs");
+                    b.Navigation("Albums");
                 });
 
             modelBuilder.Entity("MusicWebProject.Data.Models.Singer", b =>

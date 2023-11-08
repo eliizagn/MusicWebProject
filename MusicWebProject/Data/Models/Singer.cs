@@ -8,5 +8,6 @@ public class Singer : BaseEntity
     // классы, свойства, методы наз через большую
     public required string Name { get; set; }
     public required List<Album> Albums { get; set; }
+    public required List<Song> Songs { get; set; }
 
 }

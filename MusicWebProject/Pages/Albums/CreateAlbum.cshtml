@@ -5,8 +5,11 @@
     <form method ="Post">
         <input asp-for="Album.Id"/>
         <input asp-for="Album.Name" />
-        <input asp-for="Album.SongYear" />
-        <input asp-for="Album.SingerId" />
+        <div class="mb-4">
+            <select asp-for="SingerId" asp-items="Model.Singers" required>
+                <option value="">Выберите артиста</option>
+            </select>
+        </div>
         <input class="btn" type="submit" value="Add"/>
     </form>
 </div>

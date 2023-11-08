@@ -1,10 +1,10 @@
 ﻿@page
 @model MusicWebProject.Pages.Songs.IndexModel
 
-<a class="btn" asp-page="/Songs/CreateSong"> Add Song </a>
+<a type="button" class="btn btn-outline-primary" asp-page="/Songs/CreateSong"> Add Song </a>
 <form method="get">
     <input type="text" asp-for="SearchingString"/>
-    <button type="submit" class="btn">
+    <button type="submit" class="btn btn-outline-primary">
         Search
     </button>
 </form>
@@ -16,6 +16,7 @@
                 <th class="table-primary">Name</th>
                 <th class="table-primary">Singer</th>
                 <th class="table-primary">Album</th>
+                <th class="table-primary">Genre</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                     <td class="table-light">@song.Name</td>
                     <td class="table-light">@song.Singer.Name</td>
                     <td class ="table-light">@song.Album.Name</td>
+                    <td class ="table-light">@song.Genre.Name</td>
                 </tr>
             }
         </tbody>

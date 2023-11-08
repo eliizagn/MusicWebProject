@@ -1,15 +1,39 @@
 ﻿@page
 @model CreateSongs
 
-<div>
+<div class="d-grid">
     <form method="Post">
-        <input asp-for="Song.Id" />
-        <input asp-for="Song.Name" />
-        <input asp-for="Song.Singer" />
-        <input asp-for="Song.Album" />
-        <input asp-for="Song.AlbumId" />
-        <input asp-for="Song.SingerId" />
+        <div class="mb-4">
+            <input asp-for="Song.Id" />
+            <label asp-for="Song.Id" class="form-label">Id</label>
+        </div>
+        <div class="mb-4">
+            <input asp-for="Song.Name" />
+            <label asp-for="Song.Name" class="form-label">Name</label>
+        </div>
+        
+       
+        <div class="mb-4">
+            <input asp-for="Song.SongYear" />
+            <label asp-for="Song.SongYear" class="form-label">SongYear</label>
+        </div>
+        <div class="mb-4">
+            <select asp-for="GenreId" asp-items="Model.Genres" required>
+                <option value="">Выберите стиль</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <select asp-for="SingerId" asp-items="Model.Singers" required>
+                <option value="">Выберите артиста</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <select asp-for="AlbumId" asp-items="Model.Albums" required>
+                <option value="">Выберите альбом</option>
+            </select>
+        </div>
+        
+       
         <input class="btn" type="submit" value="Add" />
     </form>
-   
 </div>

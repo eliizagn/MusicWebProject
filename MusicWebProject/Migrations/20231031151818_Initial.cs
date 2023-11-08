@@ -85,7 +85,7 @@ namespace MusicWebProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Songs",
+                name: "Albums",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -134,17 +134,17 @@ namespace MusicWebProject.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_AlbumId",
-                table: "Songs",
+                table: "Albums",
                 column: "AlbumId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_MusicCollectionId",
-                table: "Songs",
+                table: "Albums",
                 column: "MusicCollectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Songs_SingerId",
-                table: "Songs",
+                table: "Albums",
                 column: "SingerId");
         }
 
@@ -152,7 +152,7 @@ namespace MusicWebProject.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Songs");
+                name: "Albums");
 
             migrationBuilder.DropTable(
                 name: "Albums");

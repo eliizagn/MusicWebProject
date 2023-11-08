@@ -32,6 +32,7 @@ namespace MusicWebProject.Pages.MusicCollections
             else {
                 Collections = _musicDbContext.MusicCollections.Where(x => x.Name.Contains(SearchingString))
                      .Include(x => x.Genre)
+                     .Include(x => x.Songs)
                      .ToList();
             }
         }

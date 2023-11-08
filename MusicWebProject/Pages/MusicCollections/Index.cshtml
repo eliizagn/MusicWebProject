@@ -3,10 +3,10 @@
 @model MusicWebProject.Pages.MusicCollections.IndexModel
 
 
-<a class="btn" asp-page="/MusicCollections/CreateCollection"> Create New Collection </a>
+<a asp-page="/MusicCollections/CreateCollection"> Create New Collection </a>
 <form method="get"> 
     <input type="text" asp-for="SearchingString"/>
-    <button type="submit" class="btn">
+    <button type="submit" class="btn btn-outline-primary">
         Search
     </button>
 </form>

@@ -9,10 +9,10 @@
 th tr -почитать
 bootstrap
 -->
-<a class="btn" asp-page="/Albums/CreateAlbum"> Add Singer Album </a>
+<a type="button" class="btn btn-outline-primary" asp-page="/Albums/CreateAlbum"> Add Singer Album </a>
 <form method="get"> 
     <input type="text" asp-for="SearchingString"/>
-    <button type="submit" class="btn">
+    <button type="submit" class="btn btn-outline-primary">
         Search
     </button>
 </form>
@@ -22,7 +22,6 @@ bootstrap
             <tr>
                 <th class="table-primary">ID</th>
                 <th class="table-primary">Name</th>
-                <th class="table-primary">Year</th>
             </tr>
         </thead>
         <tbody>
@@ -32,7 +31,6 @@ bootstrap
                 <tr>
                     <td class="table-light">@album.Id</td>
                     <td class="table-light">@album.Name</td>
-                    <td class="table-light">@album.SongYear</td>
                 </tr>
             }
         </tbody>

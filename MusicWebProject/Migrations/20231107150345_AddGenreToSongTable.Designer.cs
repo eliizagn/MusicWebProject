@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicWebProject.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MusicWebProject.Migrations
 {
     [DbContext(typeof(MusicDbContext))]
-    partial class MusicDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231107150345_AddGenreToSongTable")]
+    partial class AddGenreToSongTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,9 @@ namespace MusicWebProject.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("SingerId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("SongYear")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -123,9 +129,6 @@ namespace MusicWebProject.Migrations
 
                     b.Property<int>("SingerId")
                         .HasColumnType("integer");
-
-                    b.Property<DateOnly>("SongYear")
-                        .HasColumnType("date");
 
                     b.HasKey("Id");
 

@@ -19,7 +19,6 @@ namespace MusicWebProject.Pages.Songs
 
         public List<Song> Songs { get; set; }
         public void OnGet()
-
         {
             if (SearchingString != null)
             {
@@ -27,6 +26,7 @@ namespace MusicWebProject.Pages.Songs
                 Songs = _musicDbContext.Songs.Where(x => x.Name.Contains(SearchingString))
                     .Include(x=> x.Album)
                     .Include(x => x.Singer)
+                    .Include(x => x.Genre)
                     .ToList();
             }
             else
@@ -34,6 +34,7 @@ namespace MusicWebProject.Pages.Songs
                 Songs = _musicDbContext.Songs
                     .Include(x => x.Album)
                     .Include(x => x.Singer)
+                    .Include(x => x.Genre)
                     .ToList();
             }
         }
