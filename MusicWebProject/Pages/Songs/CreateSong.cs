@@ -54,15 +54,16 @@ namespace MusicWebProject.Pages.Songs
         }
        
 
+
         public IActionResult OnPost()
-        {
+        {   
             Song.AlbumId = AlbumId;
             Song.SingerId = SingerId;
             Song.GenreId = GenreId;
 
             _musicDbContext.Add(Song);
             _musicDbContext.SaveChanges();
-            return RedirectToPage("/Albums/Index");
+            return RedirectToPage("/Songs/Index");
         }
     }
 }

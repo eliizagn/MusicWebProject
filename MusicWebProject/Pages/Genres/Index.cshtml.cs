@@ -36,6 +36,17 @@ namespace MusicWebProject.Pages.Genres
                 Genres = _musicDbContext.Genres.ToList();
             }
         }
+        public IActionResult OnPost(int id)
+        {
+           var genre = _musicDbContext.Genres.Find(id);
+            if (genre != null) 
+            {
+                _musicDbContext.Genres.Remove(genre);
+                _musicDbContext.SaveChanges();
+            }
+
+            return RedirectToPage();
+        }
     }
 }
 
