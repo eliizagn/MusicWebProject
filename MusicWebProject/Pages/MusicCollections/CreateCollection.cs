@@ -15,7 +15,7 @@ namespace MusicWebProject.Pages.MusicCollections
         public List<SelectListItem> Genres { get; set; }
 
         [BindProperty]
-        public int SongId { get; set; }
+        public int[] SongIds { get; set; }
 
         [BindProperty]
         public int GenreId { get; set; }
@@ -50,8 +50,11 @@ namespace MusicWebProject.Pages.MusicCollections
         public IActionResult OnPost()
         {
             Collection.GenreId = GenreId;
-            var song = _musicDbContext.Songs.FirstOrDefault(s => s.Id == SongId);
-            Collection.Songs.Add(song); 
+            foreach (var item in SongIds)
+            {
+                var song = _musicDbContext.Songs.FirstOrDefault(s => s.Id == item);
+                Collection.Songs.Add(song);
+            }
             _musicDbContext.Add(Collection);
             _musicDbContext.SaveChanges();
             return RedirectToPage("/MusicCollections/Index");
