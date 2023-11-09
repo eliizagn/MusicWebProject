@@ -27,7 +27,11 @@
                 <tr class="table-light">
                     <td>@musiccollection.Name</td>
                     <td>@musiccollection.Genre.Name</td>
-                   
+                    <td>@foreach (var song in musiccollection.Songs)
+                    {
+                            <li>@song.Name</li>
+                    }
+                    </td>
                     <td>
                         <form method="post">
                             <button class="btn btn-outline-primary" asp-route-id="@musiccollection.Id">Delete</button>

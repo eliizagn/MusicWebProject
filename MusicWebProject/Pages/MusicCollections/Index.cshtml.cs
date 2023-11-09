@@ -35,7 +35,7 @@ namespace MusicWebProject.Pages.MusicCollections
             else {
                 MusicCollections = _musicDbContext.MusicCollections
                      .Include(x => x.Genre)
-                     
+                     .Include(x => x.Songs)
                      .ToList();
             }
         }

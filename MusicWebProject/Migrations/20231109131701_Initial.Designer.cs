@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MusicWebProject.Migrations
 {
     [DbContext(typeof(MusicDbContext))]
-    [Migration("20231107150345_AddGenreToSongTable")]
-    partial class AddGenreToSongTable
+    [Migration("20231109131701_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,21 @@ namespace MusicWebProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("MusicCollectionSong", b =>
+                {
+                    b.Property<int>("CollectionsId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SongsId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("CollectionsId", "SongsId");
+
+                    b.HasIndex("SongsId");
+
+                    b.ToTable("MusicCollectionSong");
+                });
 
             modelBuilder.Entity("MusicWebProject.Data.Models.Album", b =>
                 {
@@ -38,9 +53,6 @@ namespace MusicWebProject.Migrations
                         .HasColumnType("text");
 
                     b.Property<int>("SingerId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("SongYear")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -120,9 +132,6 @@ namespace MusicWebProject.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("MusicCollectionId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -130,17 +139,33 @@ namespace MusicWebProject.Migrations
                     b.Property<int>("SingerId")
                         .HasColumnType("integer");
 
+                    b.Property<DateOnly>("SongYear")
+                        .HasColumnType("date");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AlbumId");
 
                     b.HasIndex("GenreId");
 
-                    b.HasIndex("MusicCollectionId");
-
                     b.HasIndex("SingerId");
 
-                    b.ToTable("Albums");
+                    b.ToTable("Songs");
+                });
+
+            modelBuilder.Entity("MusicCollectionSong", b =>
+                {
+                    b.HasOne("MusicWebProject.Data.Models.MusicCollection", null)
+                        .WithMany()
+                        .HasForeignKey("CollectionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicWebProject.Data.Models.Song", null)
+                        .WithMany()
+                        .HasForeignKey("SongsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MusicWebProject.Data.Models.Album", b =>
@@ -168,23 +193,19 @@ namespace MusicWebProject.Migrations
             modelBuilder.Entity("MusicWebProject.Data.Models.Song", b =>
                 {
                     b.HasOne("MusicWebProject.Data.Models.Album", "Album")
-                        .WithMany()
+                        .WithMany("Songs")
                         .HasForeignKey("AlbumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("MusicWebProject.Data.Models.Genre", "Genre")
-                        .WithMany("Albums")
+                        .WithMany("Songs")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MusicWebProject.Data.Models.MusicCollection", null)
-                        .WithMany("Albums")
-                        .HasForeignKey("MusicCollectionId");
-
                     b.HasOne("MusicWebProject.Data.Models.Singer", "Singer")
-                        .WithMany()
+                        .WithMany("Songs")
                         .HasForeignKey("SingerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -196,21 +217,23 @@ namespace MusicWebProject.Migrations
                     b.Navigation("Singer");
                 });
 
+            modelBuilder.Entity("MusicWebProject.Data.Models.Album", b =>
+                {
+                    b.Navigation("Songs");
+                });
+
             modelBuilder.Entity("MusicWebProject.Data.Models.Genre", b =>
                 {
                     b.Navigation("Collections");
 
-                    b.Navigation("Albums");
-                });
-
-            modelBuilder.Entity("MusicWebProject.Data.Models.MusicCollection", b =>
-                {
-                    b.Navigation("Albums");
+                    b.Navigation("Songs");
                 });
 
             modelBuilder.Entity("MusicWebProject.Data.Models.Singer", b =>
                 {
                     b.Navigation("Albums");
+
+                    b.Navigation("Songs");
                 });
 #pragma warning restore 612, 618
         }

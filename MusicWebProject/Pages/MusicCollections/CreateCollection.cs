@@ -50,6 +50,8 @@ namespace MusicWebProject.Pages.MusicCollections
         public IActionResult OnPost()
         {
             Collection.GenreId = GenreId;
+            var song = _musicDbContext.Songs.FirstOrDefault(s => s.Id == SongId);
+            Collection.Songs.Add(song); 
             _musicDbContext.Add(Collection);
             _musicDbContext.SaveChanges();
             return RedirectToPage("/MusicCollections/Index");
