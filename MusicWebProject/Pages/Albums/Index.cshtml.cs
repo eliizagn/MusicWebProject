@@ -31,7 +31,9 @@ namespace MusicWebProject.Pages.Albums
             if (SearchingString != null)
             {
                 //Язык запросов LINQ - позволяет работать с коллекциями (таблица), Contains - метод, который позволяет сопоставить строчку ввода со строкой в таблице, х - это объект класса Singer??????
-                Albums = _musicDbContext.Albums.Where(x => x.Name.Contains(SearchingString)).ToList();
+                Albums = _musicDbContext.Albums.Where(x => x.Name.Contains(SearchingString))
+                     .Include(x => x.Singer)
+                     .ToList();
             }
             else {
                 Albums = _musicDbContext.Albums
