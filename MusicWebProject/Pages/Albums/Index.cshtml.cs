@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using MusicWebProject.Data;
 using MusicWebProject.Data.Models;
 
@@ -33,8 +34,22 @@ namespace MusicWebProject.Pages.Albums
                 Albums = _musicDbContext.Albums.Where(x => x.Name.Contains(SearchingString)).ToList();
             }
             else {
-                Albums = _musicDbContext.Albums.ToList();
+                Albums = _musicDbContext.Albums
+                    .Include(x => x.Singer)
+                    .ToList();
+
             }
+        }
+        public IActionResult OnPost(int id)
+        {
+            var album = _musicDbContext.Albums.Find(id);
+            if (album != null)
+            {
+                _musicDbContext.Albums.Remove(album);
+                _musicDbContext.SaveChanges();
+            }
+
+            return RedirectToPage();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace MusicWebProject.Pages.Songs
             {
                 //Язык запросов LINQ - позволяет работать с коллекциями (таблица), Contains - метод, который позволяет сопоставить строчку ввода со строкой в таблице, х - это объект класса Singer??????
                 Songs = _musicDbContext.Songs.Where(x => x.Name.Contains(SearchingString))
-                    .Include(x=> x.Album)
+                    .Include(x => x.Album)
                     .Include(x => x.Singer)
                     .Include(x => x.Genre)
                     .ToList();
@@ -37,6 +37,17 @@ namespace MusicWebProject.Pages.Songs
                     .Include(x => x.Genre)
                     .ToList();
             }
+        }
+        public IActionResult OnPost(int id)
+        {
+            var song = _musicDbContext.Songs.Find(id);
+            if (song != null)
+            {
+                _musicDbContext.Songs.Remove(song);
+                _musicDbContext.SaveChanges();
+            }
+
+            return RedirectToPage();
         }
     }
 }

@@ -2,30 +2,37 @@
 
 @model MusicWebProject.Pages.MusicCollections.IndexModel
 
-
-<a asp-page="/MusicCollections/CreateCollection"> Create New Collection </a>
+<div>
+<a type="button" class="btn btn-outline-primary" asp-page="/MusicCollections/CreateCollection">Create Collection</a>
 <form method="get"> 
     <input type="text" asp-for="SearchingString"/>
     <button type="submit" class="btn btn-outline-primary">
         Search
     </button>
 </form>
+</div>
 <div>
     <table class="table">
-        <thead>
+        <thead class="table-primary">
             <tr>
-                <th class="table-primary">ID</th>
-                <th class="table-primary">Name</th>
-                <th class="table-primary">Genre</th>
+                <th>Name</th>
+                <th>Genre</th>
+                <th>Song</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var collection in Model.Collections)
+            @foreach (var musiccollection in Model.MusicCollections)
             {
-                <tr>
-                    <td class="table-light">@collection.Id</td>
-                    <td class="table-light">@collection.Name</td>
-                    <td class="table-light">@collection.Genre</td>
+                <tr class="table-light">
+                    <td>@musiccollection.Name</td>
+                    <td>@musiccollection.Genre.Name</td>
+                   
+                    <td>
+                        <form method="post">
+                            <button class="btn btn-outline-primary" asp-route-id="@musiccollection.Id">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

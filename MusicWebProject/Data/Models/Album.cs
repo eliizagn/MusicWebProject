@@ -8,5 +8,7 @@ namespace MusicWebProject.Data.Models
 
         public required int SingerId { get; set; }
         public required Singer Singer { get; set; }
+        public required List<Song> Songs { get; set; }
     }
 }
+

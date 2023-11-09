@@ -28,9 +28,9 @@ namespace MusicWebProject.Pages.Songs
         public List<SelectListItem> Genres { get; set; }
         public void OnGet()
         {
-            var allSongs = _musicDbContext.Albums;
+            var allAlbums = _musicDbContext.Albums;
 
-            Albums = allSongs.Select(album => new SelectListItem
+            Albums = allAlbums.Select(album => new SelectListItem
             {
                 Value = album.Id.ToString(),
                 Text = album.Name

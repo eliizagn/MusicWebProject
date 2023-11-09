@@ -5,32 +5,32 @@
     <form method="Post">
        
         <div class="mb-4">
-            <input asp-for="Song.Name" />
             <label asp-for="Song.Name" class="form-label">Name</label>
+            <input asp-for="Song.Name" type="text" class="form-control" placeholder="Song Name: Mockingbird" />
         </div>
         
        
         <div class="mb-4">
-            <input asp-for="Song.SongYear" />
             <label asp-for="Song.SongYear" class="form-label">SongYear</label>
+            <input asp-for="Song.SongYear" type="text" class="form-control" placeholder="Song Year: 2023" />
         </div>
         <div class="mb-4">
             <select asp-for="GenreId" asp-items="Model.Genres" required>
-                <option value="">Выберите стиль</option>
+                <option value="">Choose Genre</option>
             </select>
         </div>
         <div class="mb-4">
             <select asp-for="SingerId" asp-items="Model.Singers" required>
-                <option value="">Выберите артиста</option>
+                <option value="">Choose Singer</option>
             </select>
         </div>
         <div class="mb-4">
             <select asp-for="AlbumId" asp-items="Model.Albums" required>
-                <option value="">Выберите альбом</option>
+                <option value="">Choose Album</option>
             </select>
         </div>
         
        
-        <input class="btn" type="submit" value="Add" />
+        <input  class="btn btn-outline-primary" type="submit" value="Add" />
     </form>
 </div>

@@ -9,6 +9,7 @@
 th tr -почитать
 bootstrap
 -->
+<div>
 <a type="button" class="btn btn-outline-primary" asp-page="/Albums/CreateAlbum"> Add Singer Album </a>
 <form method="get"> 
     <input type="text" asp-for="SearchingString"/>
@@ -16,21 +17,30 @@ bootstrap
         Search
     </button>
 </form>
+</div>
 <div>
     <table class="table">
-        <thead>
+        <thead class="table-primary">
             <tr>
-                <th class="table-primary">ID</th>
-                <th class="table-primary">Name</th>
+                <th>Name</th>
+                <th>Singer</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var album in Model.Albums)
             {
-            
-                <tr>
-                    <td class="table-light">@album.Id</td>
-                    <td class="table-light">@album.Name</td>
+
+                <tr class="table-light">
+
+                    <td>@album.Name</td>
+                    <td>@album.Singer.Name</td>
+
+                    <td>
+                        <form method="post">
+                            <button class="btn btn-outline-primary" asp-route-id="@album.Id">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

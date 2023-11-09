@@ -36,6 +36,17 @@ namespace MusicWebProject.Pages.Singers
                 Singers = _musicDbContext.Singers.ToList();
             }
         }
+        public IActionResult OnPost(int id)
+        {
+            var singer = _musicDbContext.Singers.Find(id);
+            if (singer != null)
+            {
+                _musicDbContext.Singers.Remove(singer);
+                _musicDbContext.SaveChanges();
+            }
+
+            return RedirectToPage();
+        }
     }
 }
 

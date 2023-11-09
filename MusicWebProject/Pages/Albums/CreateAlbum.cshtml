@@ -3,13 +3,15 @@
 
 <div>
     <form method ="Post">
-        <input asp-for="Album.Id"/>
-        <input asp-for="Album.Name" />
+        <div class="mb-4">
+            <label asp-for="Album.Name" class="form-label">Name</label>
+            <input asp-for="Album.Name" type="text" class="form-control" placeholder="Album Name: 24K Magic"/>
+        </div>
         <div class="mb-4">
             <select asp-for="SingerId" asp-items="Model.Singers" required>
-                <option value="">Выберите артиста</option>
+                <option value="">Choose Singer</option>
             </select>
         </div>
-        <input class="btn" type="submit" value="Add"/>
+        <input class="btn btn-outline-primary" type="submit" value="Add" />
     </form>
 </div>

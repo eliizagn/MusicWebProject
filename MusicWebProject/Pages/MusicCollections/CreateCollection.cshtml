@@ -3,10 +3,21 @@
 
 <div>
     <form method="Post">
-        <input asp-for="Collection.Id" />
-        <input asp-for="Collection.Name" />
-        <input asp-for="Collection.Genre.Name" />
+        <div class="mb-4">
+            <label asp-for="Collection.Name" class="form-label">Name</label>
+            <input asp-for="Collection.Name" type="text" class="form-control" placeholder="Collection Name: For Fall" />
+        </div>
+        <div class="mb-4">
+            <select asp-for="GenreId" asp-items="Model.Genres" required>
+                <option value="">Choose Genre</option>
+            </select>
+        </div>
+        <div class="mb-4">
+            <select multiple asp-for="SongId" asp-items="Model.Songs" required>
+                <option value="">Choose Songs</option>
+            </select>
+        </div>
        
-        <input class="btn" type="submit" value="Add" />
+        <input class="btn btn-outline-primary" type="submit" value="Add" />
     </form>
 </div>

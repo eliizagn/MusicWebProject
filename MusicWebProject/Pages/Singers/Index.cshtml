@@ -20,18 +20,24 @@ bootstrap
 </div>
 <div>
     <table class="table">
-        <thead>
+        <thead class="table-primary">
             <tr>
-                <th class="table-primary">ID</th>
-                <th class="table-primary">Name</th->
+                <th>ID</th>
+                <th>Name</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var singer in Model.Singers)
             {
-                <tr>
-                    <td class="table-light">@singer.Id</td>
-                    <td class="table-light">@singer.Name</td>
+                <tr class="table-light">
+                    <td>@singer.Id</td>
+                    <td>@singer.Name</td>
+                    <td>
+                        <form method="post">
+                            <button class="btn btn-outline-primary" asp-route-id="@singer.Id">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             }
         </tbody>

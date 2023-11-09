@@ -19,22 +19,36 @@ namespace MusicWebProject.Pages.MusicCollections
             _musicDbContext = musicDbContext;
         }
 
-        public List<MusicCollection> Collections { get ; set; }
+        public List<MusicCollection> MusicCollections { get; set; }
 
+
+        //(x => x.Name.Contains(SearchingString) - лямбда выражение
         public void OnGet()
-
         {
             if (SearchingString != null)
             {
-               
-                Collections = _musicDbContext.MusicCollections.Where(x => x.Name.Contains(SearchingString)).ToList();
-            }
-            else {
-                Collections = _musicDbContext.MusicCollections.Where(x => x.Name.Contains(SearchingString))
+                MusicCollections = _musicDbContext.MusicCollections.Where(x => x.Name.Contains(SearchingString))
                      .Include(x => x.Genre)
                      .Include(x => x.Songs)
                      .ToList();
             }
+            else {
+                MusicCollections = _musicDbContext.MusicCollections
+                     .Include(x => x.Genre)
+                     
+                     .ToList();
+            }
+        }
+        public IActionResult OnPost(int id)
+        {
+            var musiccollection = _musicDbContext.MusicCollections.Find(id);
+            if (musiccollection != null)
+            {
+                _musicDbContext.MusicCollections.Remove(musiccollection);
+                _musicDbContext.SaveChanges();
+            }
+
+            return RedirectToPage();
         }
     }
 }

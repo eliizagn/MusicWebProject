@@ -1,7 +1,7 @@
 ﻿//создание певцов
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.VisualBasic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicWebProject.Data;
 using MusicWebProject.Data.Models;
 
@@ -11,16 +11,45 @@ namespace MusicWebProject.Pages.MusicCollections
     {
 
         private MusicDbContext _musicDbContext;
+        public List<SelectListItem> Songs { get; set; }
+        public List<SelectListItem> Genres { get; set; }
+
+        [BindProperty]
+        public int SongId { get; set; }
+
+        [BindProperty]
+        public int GenreId { get; set; }
+
+        [BindProperty]
+        public MusicCollection Collection { get; set; }
+
 
         public CreateCollection(MusicDbContext musicDbContext)
         {
             _musicDbContext = musicDbContext;
         }
-        [BindProperty]
-        public MusicCollection Collection {  get; set; }
-
-        public IActionResult OnPost() 
+        
+        public void OnGet()
         {
+            var allSongs = _musicDbContext.Songs;
+
+            Songs = allSongs.Select(song => new SelectListItem
+            {
+                Value = song.Id.ToString(),
+                Text = song.Name
+            }).ToList();
+
+            var allGenres = _musicDbContext.Genres;
+
+            Genres = allGenres.Select(genre => new SelectListItem
+            {
+                Value = genre.Id.ToString(),
+                Text = genre.Name
+            }).ToList();
+        }
+        public IActionResult OnPost()
+        {
+            Collection.GenreId = GenreId;
             _musicDbContext.Add(Collection);
             _musicDbContext.SaveChanges();
             return RedirectToPage("/MusicCollections/Index");

@@ -5,7 +5,8 @@ namespace MusicWebProject.Data.Models
     public class MusicCollection : BaseEntity
     {
         public required string Name { get; set; }
-        public required List<Song> Songs { get; set; }
-        public required Genre Genre { get; set; }
+        public required int GenreId { get; set; }
+        public Genre Genre { get; set; }
+        public List<Song> Songs { get; set; }
     }
 }
